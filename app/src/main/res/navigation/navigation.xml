@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation"
+    app:startDestination="@id/identityFragment">
+
+    <fragment
+        android:id="@+id/identityFragment"
+        android:name="com.polytech.myapplication.IdentityFragment"
+        android:label="IdentityFragment"
+        tools:layout="@layout/fragment_identity">
+        <action
+            android:id="@+id/action_identityFragment_to_personalDataFragment"
+            app:destination="@id/personalDataFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/personalDataFragment"
+        android:name="com.polytech.myapplication.PersonalDataFragment"
+        android:label="PersonalDataFragment"
+        tools:layout="@layout/fragment_personal_data">
+        <argument
+            android:name="user"
+            app:argType="com.polytech.myapplication.model.User" />
+    </fragment>
+</navigation>
