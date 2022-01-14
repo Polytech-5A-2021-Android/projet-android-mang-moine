@@ -6,12 +6,16 @@
         <variable
             name="user"
             type="com.polytech.myapplication.model.User" />
+        <variable
+            name="clickListener"
+            type="com.polytech.myapplication.adapter.UserListener" />
     </data>
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="6dp">
+        android:layout_margin="6dp"
+        android:onClick="@{() -> clickListener.onClick(user)}">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"

@@ -16,6 +16,9 @@
         <action
             android:id="@+id/action_identityFragment_to_listFragment"
             app:destination="@id/listFragment" />
+        <action
+            android:id="@+id/action_identityFragment_to_apiListFragment"
+            app:destination="@id/apiListFragment" />
     </fragment>
     <fragment
         android:id="@+id/personalDataFragment"
@@ -30,4 +33,8 @@
         android:id="@+id/listFragment"
         android:name="com.polytech.myapplication.ListFragment"
         android:label="ListFragment" />
+    <fragment
+        android:id="@+id/apiListFragment"
+        android:name="com.polytech.myapplication.ApiListFragment"
+        android:label="ApiListFragment" />
 </navigation>

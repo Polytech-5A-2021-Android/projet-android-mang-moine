@@ -61,6 +61,13 @@ class IdentityFragment : Fragment() {
             )
         }
 
+        binding.btList2.setOnClickListener {
+            this.findNavController().navigate(
+                IdentityFragmentDirections
+                    .actionIdentityFragmentToApiListFragment()
+            )
+        }
+
         return binding.root
     }
 

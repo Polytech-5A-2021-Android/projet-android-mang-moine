@@ -13,7 +13,7 @@ import com.polytech.myapplication.model.User
 import java.text.SimpleDateFormat
 import java.util.*
 
-class MyListAdapter : ListAdapter<User, MyListAdapter.ViewHolder>(UserDiffCallback()) {
+class MyListAdapter(val clickListener: UserListener) : ListAdapter<User, MyListAdapter.ViewHolder>(UserDiffCallback()) {
 
     class UserDiffCallback : DiffUtil.ItemCallback<User>() {
         override fun areItemsTheSame(oldItem: User, newItem: User): Boolean {
@@ -26,18 +26,21 @@ class MyListAdapter : ListAdapter<User, MyListAdapter.ViewHolder>(UserDiffCallba
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val item = getItem(position)
-        holder.bind(item)
+        //val item = getItem(position)
+        //holder.bind(item)
+        holder.bind(getItem(position)!!, clickListener)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder.from(parent)
     }
 
+
     class ViewHolder private constructor(val binding: ItemViewBinding) : RecyclerView.ViewHolder(binding.root){
 
-        fun bind(item: User) {
+        fun bind(item: User, clickListener: UserListener) {
             binding.user = item
+            binding.clickListener = clickListener
             binding.executePendingBindings()
         }
 

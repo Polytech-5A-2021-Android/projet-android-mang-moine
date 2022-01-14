@@ -7,12 +7,14 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.databinding.BindingAdapter
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import com.polytech.myapplication.adapter.MyListAdapter
+import com.polytech.myapplication.adapter.UserListener
 import com.polytech.myapplication.database.Database
 import com.polytech.myapplication.databinding.FragmentListBinding
 import com.polytech.myapplication.model.User
@@ -43,7 +45,12 @@ class ListFragment :  Fragment() {
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
 
-        val adapter = MyListAdapter()
+        //val adapter = MyListAdapter()
+
+        val adapter = MyListAdapter(UserListener { userId ->
+            Toast.makeText(this.context,"$userId clicked",Toast.LENGTH_SHORT).show()
+        })
+
         binding.list.adapter = adapter
 
         viewModel.users.observe(viewLifecycleOwner, Observer {
