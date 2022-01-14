@@ -9,6 +9,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import com.polytech.myapplication.database.Database
 import com.polytech.myapplication.databinding.FragmentIdentityBinding
 import com.polytech.myapplication.model.User
@@ -48,17 +49,26 @@ class IdentityFragment : Fragment() {
             tiLastname.hint = getString(R.string.lastname)
             btValidate.text = getString(R.string.validate)
         }
+
         binding.btValidate.setOnClickListener {
             validate(it)
         }
 
+        binding.btList.setOnClickListener {
+            this.findNavController().navigate(
+                IdentityFragmentDirections
+                    .actionIdentityFragmentToListFragment()
+            )
+        }
 
         return binding.root
     }
+
 
     private fun validate(view: View) {
         viewModel.onValidate()
 
         view.findNavController().navigate(IdentityFragmentDirections.actionIdentityFragmentToPersonalDataFragment(viewModel.user.value?: User()))
     }
+
 }
