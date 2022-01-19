@@ -6,9 +6,12 @@
         <entry key="..\:/Documents/ProjetsAndroid/AppIot/app/src/main/res/layout/activity_main.xml" value="0.23369565217391305" />
         <entry key="..\:/Documents/ProjetsAndroid/AppIot/app/src/main/res/layout/api_item_view.xml" value="0.2296195652173913" />
         <entry key="..\:/Documents/ProjetsAndroid/AppIot/app/src/main/res/layout/fragment_api_list.xml" value="0.2296195652173913" />
-        <entry key="..\:/Documents/ProjetsAndroid/AppIot/app/src/main/res/layout/fragment_identity.xml" value="0.23369565217391305" />
+        <entry key="..\:/Documents/ProjetsAndroid/AppIot/app/src/main/res/layout/fragment_connexion.xml" value="0.25416666666666665" />
+        <entry key="..\:/Documents/ProjetsAndroid/AppIot/app/src/main/res/layout/fragment_identity.xml" value="0.4" />
+        <entry key="..\:/Documents/ProjetsAndroid/AppIot/app/src/main/res/layout/fragment_inscription.xml" value="0.25416666666666665" />
         <entry key="..\:/Documents/ProjetsAndroid/AppIot/app/src/main/res/layout/fragment_list.xml" value="0.23777173913043478" />
         <entry key="..\:/Documents/ProjetsAndroid/AppIot/app/src/main/res/layout/fragment_personal_data.xml" value="0.23369565217391305" />
+        <entry key="..\:/Documents/ProjetsAndroid/AppIot/app/src/main/res/layout/fragment_principal.xml" value="0.25416666666666665" />
         <entry key="..\:/Documents/ProjetsAndroid/AppIot/app/src/main/res/layout/item_view.xml" value="0.23369565217391305" />
       </map>
     </option>

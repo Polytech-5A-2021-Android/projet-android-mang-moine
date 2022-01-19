@@ -10,6 +10,7 @@ import com.polytech.myapplication.model.User
 abstract class Database : RoomDatabase() {
 
     abstract val userDao: UserDao
+    abstract val utilisateurDao: UtilisateurDao
 
     companion object {
         @Volatile

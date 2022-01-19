@@ -3,7 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation"
-    app:startDestination="@id/identityFragment">
+    app:startDestination="@id/connexionFragment">
+
+    <fragment
+        android:id="@+id/connexionFragment"
+        android:name="com.polytech.myapplication.ConnexionFragment"
+        android:label="ConnexionFragment" />
 
     <fragment
         android:id="@+id/identityFragment"
