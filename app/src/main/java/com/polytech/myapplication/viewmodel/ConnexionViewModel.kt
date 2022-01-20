@@ -5,9 +5,8 @@ import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.polytech.myapplication.database.UserDao
 import com.polytech.myapplication.database.UtilisateurDao
-import com.polytech.myapplication.model.User
+import com.polytech.myapplication.model.Connexion
 import com.polytech.myapplication.model.Utilisateur
 import kotlinx.coroutines.*
 
@@ -16,6 +15,7 @@ class ConnexionViewModel(val database: UtilisateurDao, application: Application)
     private var viewModelJob = Job()
     private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
 
+    private var connected = false
     private val _utilisateur = MutableLiveData<Utilisateur>()
     val utilisateur: LiveData<Utilisateur>
         get() = _utilisateur
@@ -27,19 +27,11 @@ class ConnexionViewModel(val database: UtilisateurDao, application: Application)
 
     private fun initializeUtilisateur() {
         uiScope.launch {
-            _utilisateur.value = getUserFromDatabase()
+            //_utilisateur.value = getUserFromDatabase()
+            _utilisateur.value = Utilisateur()
         }
     }
-    private suspend fun getUserFromDatabase(): Utilisateur? {
-        return withContext(Dispatchers.IO) {
-            var utilisateur = database.getLastUtilisateur()
-            if (utilisateur == null) {
-                utilisateur = Utilisateur()
-                utilisateur.id = insert(utilisateur)
-            }
-            utilisateur
-        }
-    }
+
 
     private suspend fun insert(utilisateur: Utilisateur): Long {
         var id = 0L
@@ -49,12 +41,47 @@ class ConnexionViewModel(val database: UtilisateurDao, application: Application)
         return id
     }
 
-    fun onValidate() {
+    fun onValidate(num: Number) {
         uiScope.launch {
             val utilisateur = utilisateur.value ?: return@launch
-            update(utilisateur)
+            if(num == 1) {
+                insert(utilisateur)
+            } else if(num == 2) {
+                connect(utilisateur)
+            } else {
+                deconnect(utilisateur)
+            }
+
         }
     }
+
+    fun isConnected(): Boolean {
+        return connected
+    }
+
+    private suspend fun connect(utilisateur: Utilisateur) {
+        withContext(Dispatchers.IO) {
+            val ut = database.getUtilisateurByUsernameAndPassword(utilisateur.username, utilisateur.password)
+            System.out.println(ut.toString())
+            if(ut != null) {
+                Connexion.utilisateur = ut
+                Connexion.connex = true
+            } else {
+                Connexion.connex = false
+            }
+
+        }
+    }
+
+    private suspend fun deconnect(utilisateur: Utilisateur) {
+        withContext(Dispatchers.IO) {
+
+            connected = false
+
+        }
+    }
+
+
     private suspend fun update(utilisateur: Utilisateur) {
         withContext(Dispatchers.IO) {
             database.update(utilisateur)

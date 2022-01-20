@@ -13,6 +13,7 @@ import androidx.navigation.fragment.findNavController
 import com.polytech.myapplication.database.Database
 import com.polytech.myapplication.databinding.FragmentConnexionBinding
 import com.polytech.myapplication.databinding.FragmentIdentityBinding
+import com.polytech.myapplication.model.Connexion
 import com.polytech.myapplication.model.User
 import com.polytech.myapplication.model.Utilisateur
 import com.polytech.myapplication.viewmodel.ConnexionViewModel
@@ -27,10 +28,11 @@ class ConnexionFragment : Fragment() {
     private lateinit var viewModelFactory: ConnexionViewModelFactory
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_identity, container, false)
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_connexion, container, false)
 
         //viewModel = ViewModelProvider(this).get(IdentityViewModel::class.java)
         //viewModel = ViewModelProviders.of(this).get(IdentityViewModel::class.java)
@@ -65,14 +67,25 @@ class ConnexionFragment : Fragment() {
             validate(it)
         }
 
+        binding.btnInscription.setOnClickListener {
+            goToInscription(it)
+        }
+
 
         return binding.root
     }
 
-    private fun validate(view: View) {
-        viewModel.onValidate()
+    private fun goToInscription(view: View) {
+        this.findNavController().navigate(ConnexionFragmentDirections.actionConnexionFragmentToInscriptionFragment())
+    }
 
-        //view.findNavController().navigate(IdentityFragmentDirections.actionIdentityFragmentToPersonalDataFragment(viewModel.utilisateur.value?: Utilisateur()))
+    private fun validate(view: View) {
+        viewModel.onValidate(2)
+
+        if(Connexion.connex) {
+            view.findNavController().navigate(ConnexionFragmentDirections.actionConnexionFragmentToPrincipalFragment())
+        }
+
     }
 
 }

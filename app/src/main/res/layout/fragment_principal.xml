@@ -4,9 +4,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
+        <import type="com.polytech.myapplication.utils.FloatConverter"/>
         <variable
             name="viewModel"
-            type="com.polytech.myapplication.viewmodel.ConnexionViewModel" />
+            type="com.polytech.myapplication.viewmodel.SeuilViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -31,7 +32,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="112dp"
-            android:text="@string/valeur_seuil"
+            android:text="@={FloatConverter.floatToString(viewModel.seuil.valeur)}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.226"
             app:layout_constraintStart_toStartOf="parent"
@@ -41,7 +42,7 @@
             android:id="@+id/btnModifierSeuil"
             android:layout_width="158dp"
             android:layout_height="54dp"
-            android:layout_marginTop="124dp"
+            android:layout_marginTop="96dp"
             android:text="@string/modifier_seuil"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"
@@ -52,10 +53,35 @@
             android:id="@+id/btnActiverVentilateur"
             android:layout_width="155dp"
             android:layout_height="53dp"
-            android:layout_marginStart="128dp"
-            android:layout_marginTop="92dp"
+            android:layout_marginTop="48dp"
             android:text="@string/activer_ventilateur"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.492"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/btnModifierSeuil" />
+
+        <Button
+            android:id="@+id/btnAfficherMesures"
+            android:layout_width="155dp"
+            android:layout_height="53dp"
+            android:layout_marginTop="48dp"
+            android:text="@string/afficher_mesures"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.492"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btnActiverVentilateur" />
+
+        <Button
+            android:id="@+id/btnDeconnexion"
+            android:layout_width="155dp"
+            android:layout_height="53dp"
+            android:layout_marginTop="32dp"
+            android:text="@string/deconnexion"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.503"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btnAfficherMesures" />
+
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

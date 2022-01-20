@@ -8,7 +8,15 @@
     <fragment
         android:id="@+id/connexionFragment"
         android:name="com.polytech.myapplication.ConnexionFragment"
-        android:label="ConnexionFragment" />
+        android:label="ConnexionFragment"
+        tools:layout="@layout/fragment_connexion">
+        <action
+            android:id="@+id/action_connexionFragment_to_inscriptionFragment"
+            app:destination="@id/inscriptionFragment" />
+        <action
+            android:id="@+id/action_connexionFragment_to_principalFragment"
+            app:destination="@id/principalFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/identityFragment"
@@ -42,4 +50,34 @@
         android:id="@+id/apiListFragment"
         android:name="com.polytech.myapplication.ApiListFragment"
         android:label="ApiListFragment" />
+    <fragment
+        android:id="@+id/inscriptionFragment"
+        android:name="com.polytech.myapplication.InscriptionFragment"
+        android:label="InscriptionFragment"
+        tools:layout="@layout/fragment_inscription">
+        <action
+            android:id="@+id/action_inscriptionFragment_to_connexionFragment"
+            app:destination="@id/connexionFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/principalFragment"
+        android:name="com.polytech.myapplication.PrincipalFragment"
+        android:label="PrincipalFragment"
+        tools:layout="@layout/fragment_principal">
+        <action
+            android:id="@+id/action_principalFragment_to_connexionFragment"
+            app:destination="@id/connexionFragment" />
+        <action
+            android:id="@+id/action_principalFragment_to_modifierSeuilFragment"
+            app:destination="@id/modifierSeuilFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/modifierSeuilFragment"
+        android:name="com.polytech.myapplication.ModifierSeuilFragment"
+        android:label="ModifierSeuilFragment"
+        tools:layout="@layout/fragment_modifier_seuil">
+        <action
+            android:id="@+id/action_modifierSeuilFragment_to_principalFragment"
+            app:destination="@id/principalFragment" />
+    </fragment>
 </navigation>

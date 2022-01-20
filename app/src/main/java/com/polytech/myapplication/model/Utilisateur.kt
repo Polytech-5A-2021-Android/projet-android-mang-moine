@@ -13,22 +13,22 @@ import com.polytech.myapplication.BR
 @Keep
 @Entity(tableName="utilisateur")
 data class Utilisateur (
-@PrimaryKey(autoGenerate = true)
-@ColumnInfo(name = "id")
-private var _id: Long = 0L,
+    @PrimaryKey(autoGenerate = true)
+    @ColumnInfo(name = "id")
+    private var _id: Long = 0L,
 
-@ColumnInfo(name = "username")
-private var _username: String? = "",
+    @ColumnInfo(name = "username")
+    private var _username: String? = "",
 
-@ColumnInfo(name = "password")
-private var _password: String? = "",
+    @ColumnInfo(name = "password")
+    private var _password: String? = "",
 
-@ColumnInfo(name = "salt")
-private var _salt: String? = "",
+    @ColumnInfo(name = "salt")
+    private var _salt: String? = "",
 
-@ColumnInfo(name = "token")
-private var _token: String? = ""): Parcelable,
-BaseObservable() {
+    @ColumnInfo(name = "token")
+    private var _token: String? = ""): Parcelable,
+    BaseObservable() {
 
     var id: Long
         @Bindable get() = _id

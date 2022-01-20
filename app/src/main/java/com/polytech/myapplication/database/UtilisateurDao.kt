@@ -20,4 +20,8 @@ interface UtilisateurDao {
     @Query("SELECT * FROM utilisateur")
     fun getUtilisateurs(): List<Utilisateur>?
 
+    @Query("SELECT * FROM utilisateur where username = :username AND password = :password")
+    fun getUtilisateurByUsernameAndPassword(username: String?, password: String?) : Utilisateur?
+
+
 }
