@@ -70,6 +70,9 @@
         <action
             android:id="@+id/action_principalFragment_to_modifierSeuilFragment"
             app:destination="@id/modifierSeuilFragment" />
+        <action
+            android:id="@+id/action_principalFragment_to_listMesuresFragment"
+            app:destination="@id/listMesuresFragment" />
     </fragment>
     <fragment
         android:id="@+id/modifierSeuilFragment"
@@ -80,4 +83,9 @@
             android:id="@+id/action_modifierSeuilFragment_to_principalFragment"
             app:destination="@id/principalFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/listMesuresFragment"
+        android:name="com.polytech.myapplication.ListMesuresFragment"
+        android:label="ListMesuresFragment"
+        tools:layout="@layout/fragment_list_mesures" />
 </navigation>

@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-        <import type="com.polytech.myapplication.utils.FloatConverter"/>
+        <import type="com.polytech.myapplication.utils.Converter"/>
         <variable
             name="viewModel"
             type="com.polytech.myapplication.viewmodel.SeuilViewModel" />
@@ -32,7 +32,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="112dp"
-            android:text="@={FloatConverter.floatToString(viewModel.seuil.valeur)}"
+            android:text="@={Converter.floatToString(viewModel.seuil.valeur)}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.226"
             app:layout_constraintStart_toStartOf="parent"

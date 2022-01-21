@@ -1,6 +1,5 @@
 package com.polytech.myapplication
 
-import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -11,8 +10,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.polytech.myapplication.database.Database
 import com.polytech.myapplication.databinding.FragmentModifierSeuilBinding
-import com.polytech.myapplication.databinding.FragmentPrincipalBinding
-import com.polytech.myapplication.utils.FloatConverter
+import com.polytech.myapplication.utils.Converter
 import com.polytech.myapplication.viewmodel.SeuilViewModel
 import com.polytech.myapplication.viewmodelfactory.SeuilViewModelFactory
 
@@ -45,7 +43,7 @@ class ModifierSeuilFragment : Fragment() {
 
 
         binding.btnModifierSeuil.setOnClickListener {
-            val nouvSeuil = FloatConverter.stringToFloat(binding.editTextSeuil.text.toString())
+            val nouvSeuil = Converter.stringToFloat(binding.editTextSeuil.text.toString())
             retourPrincipal(it,nouvSeuil)
         }
 

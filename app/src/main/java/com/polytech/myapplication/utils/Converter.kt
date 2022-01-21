@@ -4,7 +4,7 @@ import androidx.databinding.InverseMethod
 import java.text.SimpleDateFormat
 import java.util.*
 
-object FloatConverter {
+object Converter {
     @JvmStatic
     @InverseMethod("stringToFloat")
     fun floatToString(
@@ -17,5 +17,19 @@ object FloatConverter {
     ): Float {
         return value.toFloat()
     }
+
+    @JvmStatic
+    @InverseMethod("stringToLong")
+    fun longToString(
+        value: Long
+    ): String {
+        return value.toString()
+    }
+    @JvmStatic
+    fun stringToLong( value: String
+    ): Long {
+        return value.toLong()
+    }
+
 
 }

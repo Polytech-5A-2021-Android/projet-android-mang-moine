@@ -52,6 +52,9 @@ class PrincipalFragment : Fragment() {
             deconnexion(it)
         }
 
+        binding.btnAfficherMesures.setOnClickListener {
+            afficherMesures(it)
+        }
 
         return binding.root
     }
@@ -65,7 +68,7 @@ class PrincipalFragment : Fragment() {
     }
 
     private fun afficherMesures(view: View) {
-        //A FAIRE
+        this.findNavController().navigate(PrincipalFragmentDirections.actionPrincipalFragmentToListMesuresFragment())
     }
 
 

@@ -4,16 +4,18 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import com.polytech.myapplication.model.Mesure
 import com.polytech.myapplication.model.Seuil
 import com.polytech.myapplication.model.User
 import com.polytech.myapplication.model.Utilisateur
 
-@Database(entities = [User::class, Utilisateur::class, Seuil::class], version = 3, exportSchema = false)
+@Database(entities = [User::class, Utilisateur::class, Seuil::class, Mesure::class], version = 4, exportSchema = false)
 abstract class Database : RoomDatabase() {
 
     abstract val userDao: UserDao
     abstract val utilisateurDao: UtilisateurDao
     abstract val seuilDao: SeuilDao
+    abstract val mesureDao: MesureDao
 
     companion object {
         @Volatile
