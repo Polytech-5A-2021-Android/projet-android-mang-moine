@@ -55,11 +55,8 @@ class ConnexionFragment : Fragment() {
             btValidate.text = getString(R.string.validate)
             */
 
-
-
             btnValider.text = getString(R.string.validate)
             btnInscription.text = getString(R.string.inscription)
-
 
         }
 
@@ -80,11 +77,15 @@ class ConnexionFragment : Fragment() {
     }
 
     private fun validate(view: View) {
-        viewModel.onValidate(2)
+        //viewModel.onValidate(2)
+        viewModel.test()
+
+        println(Connexion.connex)
 
         if(Connexion.connex) {
             view.findNavController().navigate(ConnexionFragmentDirections.actionConnexionFragmentToPrincipalFragment())
         }
+
 
     }
 

@@ -7,15 +7,9 @@ class Connexion {
 
     companion object {
         lateinit var utilisateur: Utilisateur
+        lateinit var seuil: Seuil
         var connex: Boolean = false
     }
 
-    fun setUtilisateur(util: Utilisateur) {
-        Companion.utilisateur = util
-    }
-
-    fun getUtilisateur(): Utilisateur {
-        return Companion.utilisateur
-    }
 
 }

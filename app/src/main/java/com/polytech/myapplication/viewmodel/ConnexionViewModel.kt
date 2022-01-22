@@ -9,11 +9,14 @@ import com.polytech.myapplication.database.UtilisateurDao
 import com.polytech.myapplication.model.Connexion
 import com.polytech.myapplication.model.Utilisateur
 import kotlinx.coroutines.*
+import okhttp3.Dispatcher
 
 class ConnexionViewModel(val database: UtilisateurDao, application: Application) : AndroidViewModel(application) {
 
     private var viewModelJob = Job()
     private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
+
+    private var listUtilisateurs: List<Utilisateur>? = null
 
     private var connected = false
     private val _utilisateur = MutableLiveData<Utilisateur>()
@@ -27,11 +30,18 @@ class ConnexionViewModel(val database: UtilisateurDao, application: Application)
 
     private fun initializeUtilisateur() {
         uiScope.launch {
-            //_utilisateur.value = getUserFromDatabase()
             _utilisateur.value = Utilisateur()
+            listUtilisateurs = getUtilisateurs()
         }
+
+
     }
 
+    private suspend fun getUtilisateurs(): List<Utilisateur>? {
+        return withContext(Dispatchers.IO) {
+            database.getUtilisateurs()
+        }
+    }
 
     private suspend fun insert(utilisateur: Utilisateur): Long {
         var id = 0L
@@ -41,23 +51,55 @@ class ConnexionViewModel(val database: UtilisateurDao, application: Application)
         return id
     }
 
+    fun test() {
+        val utilisateur = utilisateur.value!!
+        connect2(utilisateur)
+    }
+
+
     fun onValidate(num: Number) {
         uiScope.launch {
             val utilisateur = utilisateur.value ?: return@launch
             if(num == 1) {
                 insert(utilisateur)
             } else if(num == 2) {
-                connect(utilisateur)
+                //connect(utilisateur)
+                connect2(utilisateur)
             } else {
                 deconnect(utilisateur)
             }
-
         }
     }
 
     fun isConnected(): Boolean {
         return connected
     }
+
+    private fun connect2(utilisateur: Utilisateur) {
+        if(listUtilisateurs == null) {
+            Connexion.connex = false
+        } else {
+            var found = false
+            for(u in listUtilisateurs!!) {
+                if(found)
+                    break
+                val okUsername = utilisateur.username.equals(u.username)
+                val okPassword = utilisateur.password.equals(u.password)
+
+                if(okUsername && okPassword) {
+                    Connexion.utilisateur = u
+                    Connexion.connex = true
+                    found = true
+                } else {
+                    Connexion.connex = false
+                }
+            }
+        }
+
+
+    }
+
+
 
     private suspend fun connect(utilisateur: Utilisateur) {
         withContext(Dispatchers.IO) {

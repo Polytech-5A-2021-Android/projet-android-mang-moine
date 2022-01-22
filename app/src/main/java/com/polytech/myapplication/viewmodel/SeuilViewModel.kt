@@ -37,6 +37,7 @@ class SeuilViewModel(val database: SeuilDao, application: Application) : Android
                 insert(2000f)
                 _seuil.value = get(id)
             }
+            Connexion.seuil = _seuil.value!!
         }
     }
 
