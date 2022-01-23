@@ -15,21 +15,11 @@
         android:layout_height="match_parent"
         tools:context=".InscriptionFragment">
 
-        <TextView
-            android:id="@+id/txtMdpConfirm"
-            android:layout_width="225dp"
-            android:layout_height="40dp"
-            android:layout_marginStart="92dp"
-            android:layout_marginTop="356dp"
-            android:text="@string/mdp_confirm"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
         <Button
             android:id="@+id/btnValider"
             android:layout_width="109dp"
             android:layout_height="58dp"
-            android:layout_marginTop="120dp"
+            android:layout_marginTop="68dp"
             android:text="@string/validate"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -39,28 +29,57 @@
             android:id="@+id/txtUsername"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="100dp"
+            android:layout_marginTop="80dp"
             android:ems="10"
+            android:hint="@string/username"
             android:inputType="textPersonName"
             android:minHeight="48dp"
             android:text="@={viewModel.utilisateur.username}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.497"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/textView" />
 
         <EditText
             android:id="@+id/txtMdp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="88dp"
+            android:layout_marginTop="52dp"
             android:ems="10"
+            android:hint="@string/mdp"
             android:inputType="textPassword"
             android:minHeight="48dp"
             android:text="@={viewModel.utilisateur.password}"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.472"
+            app:layout_constraintHorizontal_bias="0.497"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/txtUsername" />
+
+        <EditText
+            android:id="@+id/txtMdpConfirm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="60dp"
+            android:ems="10"
+            android:hint="@string/mdp_confirm"
+            android:inputType="textPassword"
+            android:minHeight="48dp"
+            android:text="@={viewModel.utilisateur.password}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.497"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtMdp" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="64dp"
+            android:text="@string/inscription"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

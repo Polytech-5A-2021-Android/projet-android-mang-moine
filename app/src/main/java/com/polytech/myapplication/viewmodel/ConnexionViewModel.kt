@@ -18,13 +18,12 @@ class ConnexionViewModel(val database: UtilisateurDao, application: Application)
 
     private var listUtilisateurs: List<Utilisateur>? = null
 
-    private var connected = false
     private val _utilisateur = MutableLiveData<Utilisateur>()
     val utilisateur: LiveData<Utilisateur>
         get() = _utilisateur
 
     init {
-        Log.i("IdentityViewModel", "created")
+        Log.i("ConnexionViewModel", "created")
         initializeUtilisateur()
     }
 
@@ -32,6 +31,7 @@ class ConnexionViewModel(val database: UtilisateurDao, application: Application)
         uiScope.launch {
             _utilisateur.value = Utilisateur()
             listUtilisateurs = getUtilisateurs()
+            println(listUtilisateurs)
         }
 
 
@@ -51,31 +51,72 @@ class ConnexionViewModel(val database: UtilisateurDao, application: Application)
         return id
     }
 
-    fun test() {
-        val utilisateur = utilisateur.value!!
-        connect2(utilisateur)
+    fun connexion() {
+        connect(utilisateur.value!!)
     }
 
+    fun testInscription(): Boolean {
+        return utilExists(utilisateur.value!!, true) != null
+    }
 
+    fun inscription() {
+        uiScope.launch {
+            insert(utilisateur.value!!)
+        }
+    }
+
+    /*
     fun onValidate(num: Number) {
         uiScope.launch {
             val utilisateur = utilisateur.value ?: return@launch
             if(num == 1) {
                 insert(utilisateur)
             } else if(num == 2) {
-                //connect(utilisateur)
-                connect2(utilisateur)
+                connect(utilisateur)
             } else {
-                deconnect(utilisateur)
+                //deconnect(utilisateur)
             }
         }
     }
+    */
 
-    fun isConnected(): Boolean {
-        return connected
+
+    private fun utilExists(utilisateur: Utilisateur, usernameOnly: Boolean): Utilisateur? {
+        var found = false
+        var utilTrouve:Utilisateur? = null
+        for(u in listUtilisateurs!!) {
+            if(found)
+                break
+            val okUsername = utilisateur.username.equals(u.username)
+            val okPassword = utilisateur.password.equals(u.password)
+            val ok: Boolean = if(usernameOnly) {
+                okUsername
+            } else {
+                okUsername && okPassword
+            }
+
+            if(ok) {
+                found = true
+                utilTrouve = u
+            }
+        }
+        return utilTrouve
     }
 
-    private fun connect2(utilisateur: Utilisateur) {
+
+    private fun connect(utilisateur: Utilisateur) {
+        val utilConnect = utilExists(utilisateur, false)
+
+        if(utilConnect != null) {
+            Connexion.utilisateur = utilConnect
+            Connexion.connex = true
+        } else {
+            Connexion.connex = false
+        }
+
+        println(Connexion.utilisateur)
+
+        /*
         if(listUtilisateurs == null) {
             Connexion.connex = false
         } else {
@@ -95,50 +136,15 @@ class ConnexionViewModel(val database: UtilisateurDao, application: Application)
                 }
             }
         }
-
-
+        */
     }
 
 
-
-    private suspend fun connect(utilisateur: Utilisateur) {
-        withContext(Dispatchers.IO) {
-            val ut = database.getUtilisateurByUsernameAndPassword(utilisateur.username, utilisateur.password)
-            System.out.println(ut.toString())
-            if(ut != null) {
-                Connexion.utilisateur = ut
-                Connexion.connex = true
-            } else {
-                Connexion.connex = false
-            }
-
-        }
-    }
-
-    private suspend fun deconnect(utilisateur: Utilisateur) {
-        withContext(Dispatchers.IO) {
-
-            connected = false
-
-        }
-    }
-
-
-    private suspend fun update(utilisateur: Utilisateur) {
-        withContext(Dispatchers.IO) {
-            database.update(utilisateur)
-        }
-    }
-    private suspend fun get(id: Long) {
-        withContext(Dispatchers.IO) {
-            database.get(id)
-        }
-    }
 
 
     override fun onCleared() {
         super.onCleared()
-        Log.i("IdentityViewModel", "destroyed")
+        Log.i("ConnexionViewModel", "destroyed")
     }
 
 }

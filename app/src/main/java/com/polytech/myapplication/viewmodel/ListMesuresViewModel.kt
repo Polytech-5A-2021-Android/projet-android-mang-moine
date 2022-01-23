@@ -38,11 +38,12 @@ class ListMesuresViewModel(val database: MesureDao,
             var mesure1 = Mesure()
             mesure1.quantite_gaz = 500f
             mesure1.date_mesure = System.currentTimeMillis()
-            mesure1.seuil_id = Connexion.seuil.id
+            mesure1.seuil_id = Connexion.seuils.keys.last()
+
             var mesure2 = Mesure()
-            mesure2.quantite_gaz = 300f
+            mesure2.quantite_gaz = 750.25F
             mesure2.date_mesure = System.currentTimeMillis()
-            mesure2.seuil_id = Connexion.seuil.id
+            mesure2.seuil_id = Connexion.seuils.keys.last()
 
             database.insert(mesure1)
             database.insert(mesure2)

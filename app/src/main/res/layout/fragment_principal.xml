@@ -22,6 +22,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="64dp"
             android:text="@string/qte_gaz"
+            android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.224"
             app:layout_constraintStart_toStartOf="parent"
@@ -31,17 +32,18 @@
             android:id="@+id/txtSeuil"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="112dp"
+            android:layout_marginTop="76dp"
             android:text="@={Converter.floatToString(viewModel.seuil.valeur)}"
+            android:textSize="34sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.226"
+            app:layout_constraintHorizontal_bias="0.201"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/txtGaz" />
 
         <Button
             android:id="@+id/btnModifierSeuil"
-            android:layout_width="158dp"
-            android:layout_height="54dp"
+            android:layout_width="156dp"
+            android:layout_height="63dp"
             android:layout_marginTop="96dp"
             android:text="@string/modifier_seuil"
             app:layout_constraintEnd_toEndOf="parent"
@@ -51,8 +53,8 @@
 
         <Button
             android:id="@+id/btnActiverVentilateur"
-            android:layout_width="155dp"
-            android:layout_height="53dp"
+            android:layout_width="160dp"
+            android:layout_height="56dp"
             android:layout_marginTop="48dp"
             android:text="@string/activer_ventilateur"
             app:layout_constraintEnd_toEndOf="parent"

@@ -37,9 +37,25 @@ class SeuilViewModel(val database: SeuilDao, application: Application) : Android
                 insert(2000f)
                 _seuil.value = get(id)
             }
-            Connexion.seuil = _seuil.value!!
+
+            getMapSeuils(id)
+
+            //Connexion.seuil = _seuil.value!!
         }
     }
+
+    private suspend fun getMapSeuils(utilId: Long) {
+        withContext(Dispatchers.IO) {
+            val seuils = database.getAllSeuilsByUtilisateurId(utilId)
+            val map = HashMap<Long, Seuil>()
+            for(seuil in seuils!!) {
+                map[seuil.id] = seuil
+            }
+            Connexion.seuils = map
+            println(Connexion.seuils)
+        }
+    }
+
 
     private suspend fun insert(valeur: Float): Long {
         var id = 0L
@@ -63,6 +79,7 @@ class SeuilViewModel(val database: SeuilDao, application: Application) : Android
         uiScope.launch {
             insert(valeur)
             _seuil.value = get(Connexion.utilisateur.id)
+            getMapSeuils(Connexion.utilisateur.id)
         }
     }
 

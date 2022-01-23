@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
@@ -56,11 +57,27 @@ class InscriptionFragment : Fragment() {
     }
 
     private fun validate(view: View) {
-        viewModel.onValidate(1)
+        val username = this.binding.txtUsername.text
+        val mdp = this.binding.txtMdp.text
+        val mdpConfirm = this.binding.txtMdpConfirm.text
 
-        view.findNavController().navigate(InscriptionFragmentDirections.actionInscriptionFragmentToConnexionFragment())
+        val blanks = username.isBlank() || mdp.isBlank() || mdpConfirm.isBlank()
+        val mdpIsConfirm = mdp.toString() == mdpConfirm.toString()
 
-        //view.findNavController().navigate(IdentityFragmentDirections.actionIdentityFragmentToPersonalDataFragment(viewModel.utilisateur.value?: Utilisateur()))
+        if (blanks) {
+            Toast.makeText(this.context, "Les champs ne doivent pas être vides", Toast.LENGTH_SHORT).show()
+        } else if (!mdpIsConfirm) {
+            Toast.makeText(this.context, "Le mot de passe n'est pas confirmé", Toast.LENGTH_SHORT).show()
+        } else if(viewModel.testInscription()) {
+            Toast.makeText(this.context, "Le nom d'utilisateur existe déjà", Toast.LENGTH_SHORT).show()
+        } else {
+            viewModel.inscription()
+            view.findNavController().navigate(InscriptionFragmentDirections.actionInscriptionFragmentToConnexionFragment())
+        }
+
+
+
+
     }
 
 }

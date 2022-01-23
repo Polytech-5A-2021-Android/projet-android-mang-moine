@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Projet Detect Gaz</string>
+    <string name="app_name">Detect Gaz</string>
     <string name="title">Bienvenue</string>
     <string name="firstname">Prénom</string>
     <string name="lastname">Nom</string>
@@ -12,6 +12,7 @@
     <string name="mdp">Mot de passe</string>
     <string name="mdp_confirm">Confirmer le mot de passe</string>
     <string name="inscription">Inscription</string>
+    <string name="connexion">Connexion</string>
 
     <string name="qte_gaz">Quantité de gaz : </string>
     <string name="valeur_seuil">Valeur du seuil : </string>
@@ -22,8 +23,7 @@
     <string name="nouveau_seuil">Saisir le nouveau seuil : </string>
     <string name="afficher_mesures">Mesures</string>
     <string name="deconnexion">Deconnexion</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+
 
 
 </resources>

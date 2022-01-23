@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.constraintlayout.motion.widget.TransitionBuilder.validate
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
@@ -77,14 +78,24 @@ class ConnexionFragment : Fragment() {
     }
 
     private fun validate(view: View) {
-        //viewModel.onValidate(2)
-        viewModel.test()
+        val username = this.binding.txtUsername.text
+        val mdp = this.binding.txtMdp.text
 
-        println(Connexion.connex)
+        if(username.isBlank() || mdp.isBlank()) {
+            Toast.makeText(this.context,"Les champs ne doivent pas être vides", Toast.LENGTH_SHORT).show()
+        } else {
+            viewModel.connexion()
 
-        if(Connexion.connex) {
-            view.findNavController().navigate(ConnexionFragmentDirections.actionConnexionFragmentToPrincipalFragment())
+            if(Connexion.connex) {
+                view.findNavController().navigate(ConnexionFragmentDirections.actionConnexionFragmentToPrincipalFragment())
+                Toast.makeText(this.context,"Connexion effectuée", Toast.LENGTH_SHORT).show()
+            } else {
+                Toast.makeText(this.context,"Connexion échouée", Toast.LENGTH_SHORT).show()
+            }
         }
+
+
+
 
 
     }

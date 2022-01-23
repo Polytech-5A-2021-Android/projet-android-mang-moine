@@ -21,4 +21,7 @@ interface SeuilDao {
     @Query("SELECT * FROM seuil")
     fun getAllSeuils(): List<Seuil>?
 
+    @Query("SELECT * FROM seuil WHERE utilisateur_id = :utilId")
+    fun getAllSeuilsByUtilisateurId(utilId: Long): List<Seuil>?
+
 }

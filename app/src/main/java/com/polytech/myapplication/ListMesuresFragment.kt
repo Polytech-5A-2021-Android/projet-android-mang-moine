@@ -71,7 +71,7 @@ class ListMesuresFragment : Fragment() {
         @BindingAdapter("mesureDate")
         fun TextView.setMesureDate(item: Mesure) {
             val date = Date(item.date_mesure)
-            val f = SimpleDateFormat("dd/MM/yy")
+            val f = SimpleDateFormat("dd/MM/yy hh:mm:ss")
             val dateText = f.format(date)
             text = dateText
         }

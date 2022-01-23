@@ -4,6 +4,7 @@
 
     <data>
         <import type="com.polytech.myapplication.utils.Converter"/>
+        <import type="com.polytech.myapplication.model.Connexion"/>
         <variable
             name="mesure"
             type="com.polytech.myapplication.model.Mesure" />
@@ -51,7 +52,7 @@
                 android:id="@+id/tv_seuil_item"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{Converter.longToString(mesure.seuil_id)}"
+                android:text="@{Converter.floatToString(Connexion.getSeuil(mesure.seuil_id).valeur)}"
                 android:textAppearance="@style/TextAppearance.AppCompat.Title"
                 android:textSize="20sp"
                 app:layout_constraintLeft_toRightOf="@+id/tv_quantite_gaz_item"
