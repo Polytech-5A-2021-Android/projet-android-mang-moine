@@ -8,6 +8,7 @@ import androidx.lifecycle.MutableLiveData
 import com.polytech.myapplication.database.UtilisateurDao
 import com.polytech.myapplication.model.Connexion
 import com.polytech.myapplication.model.Utilisateur
+import com.polytech.myapplication.service.IotApi
 import kotlinx.coroutines.*
 import okhttp3.Dispatcher
 
@@ -31,7 +32,6 @@ class ConnexionViewModel(val database: UtilisateurDao, application: Application)
         uiScope.launch {
             _utilisateur.value = Utilisateur()
             listUtilisateurs = getUtilisateurs()
-            println(listUtilisateurs)
         }
 
 
@@ -64,21 +64,6 @@ class ConnexionViewModel(val database: UtilisateurDao, application: Application)
             insert(utilisateur.value!!)
         }
     }
-
-    /*
-    fun onValidate(num: Number) {
-        uiScope.launch {
-            val utilisateur = utilisateur.value ?: return@launch
-            if(num == 1) {
-                insert(utilisateur)
-            } else if(num == 2) {
-                connect(utilisateur)
-            } else {
-                //deconnect(utilisateur)
-            }
-        }
-    }
-    */
 
 
     private fun utilExists(utilisateur: Utilisateur, usernameOnly: Boolean): Utilisateur? {
@@ -114,29 +99,6 @@ class ConnexionViewModel(val database: UtilisateurDao, application: Application)
             Connexion.connex = false
         }
 
-        println(Connexion.utilisateur)
-
-        /*
-        if(listUtilisateurs == null) {
-            Connexion.connex = false
-        } else {
-            var found = false
-            for(u in listUtilisateurs!!) {
-                if(found)
-                    break
-                val okUsername = utilisateur.username.equals(u.username)
-                val okPassword = utilisateur.password.equals(u.password)
-
-                if(okUsername && okPassword) {
-                    Connexion.utilisateur = u
-                    Connexion.connex = true
-                    found = true
-                } else {
-                    Connexion.connex = false
-                }
-            }
-        }
-        */
     }
 
 

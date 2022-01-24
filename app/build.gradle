@@ -67,4 +67,6 @@ dependencies {
     implementation "com.squareup.moshi:moshi-kotlin:1.11.0"
     implementation "com.jakewharton.retrofit:retrofit2-kotlin-coroutines-adapter:0.9.2"
 
+    implementation "com.jjoe64:graphview:4.2.1"
+
 }

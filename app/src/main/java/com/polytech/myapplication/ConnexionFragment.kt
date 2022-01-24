@@ -17,6 +17,7 @@ import com.polytech.myapplication.databinding.FragmentIdentityBinding
 import com.polytech.myapplication.model.Connexion
 import com.polytech.myapplication.model.User
 import com.polytech.myapplication.model.Utilisateur
+import com.polytech.myapplication.service.IotApi
 import com.polytech.myapplication.viewmodel.ConnexionViewModel
 import com.polytech.myapplication.viewmodel.IdentityViewModel
 import com.polytech.myapplication.viewmodelfactory.ConnexionViewModelFactory
@@ -69,6 +70,7 @@ class ConnexionFragment : Fragment() {
             goToInscription(it)
         }
 
+        println(IotApi)
 
         return binding.root
     }

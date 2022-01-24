@@ -37,10 +37,7 @@ class SeuilViewModel(val database: SeuilDao, application: Application) : Android
                 insert(2000f)
                 _seuil.value = get(id)
             }
-
             getMapSeuils(id)
-
-            //Connexion.seuil = _seuil.value!!
         }
     }
 
@@ -52,7 +49,6 @@ class SeuilViewModel(val database: SeuilDao, application: Application) : Android
                 map[seuil.id] = seuil
             }
             Connexion.seuils = map
-            println(Connexion.seuils)
         }
     }
 
@@ -64,7 +60,6 @@ class SeuilViewModel(val database: SeuilDao, application: Application) : Android
             seuil.valeur = valeur
             seuil.utilisateur_id = Connexion.utilisateur.id
             id = database.insert(seuil)
-            System.out.println(database.getAllSeuils())
         }
         return id
     }
