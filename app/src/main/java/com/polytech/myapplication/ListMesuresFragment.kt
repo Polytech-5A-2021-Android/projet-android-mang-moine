@@ -11,21 +11,15 @@ import android.widget.Toast
 import androidx.databinding.BindingAdapter
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
-import com.polytech.myapplication.adapter.MyListAdapter
-import com.polytech.myapplication.adapter.UserListener
 import com.polytech.myapplication.database.Database
-import com.polytech.myapplication.databinding.FragmentListBinding
 import com.polytech.myapplication.databinding.FragmentListMesuresBinding
-import com.polytech.myapplication.model.User
 import com.polytech.myapplication.viewmodel.ListMesuresViewModel
-import com.polytech.myapplication.viewmodel.ListViewModel
 import com.polytech.myapplication.viewmodelfactory.ListMesuresViewModelFactory
-import com.polytech.myapplication.viewmodelfactory.ListViewModelFactory
 import java.text.SimpleDateFormat
 import androidx.lifecycle.Observer
 import com.polytech.myapplication.adapter.MesureListAdapter
 import com.polytech.myapplication.adapter.MesureListener
-import com.polytech.myapplication.model.Mesure
+import com.polytech.myapplication.model.*
 import java.util.*
 
 
@@ -50,8 +44,8 @@ class ListMesuresFragment : Fragment() {
 
         //val adapter = MyListAdapter()
 
-        val adapter = MesureListAdapter(MesureListener { mesureId ->
-            Toast.makeText(this.context,"$mesureId clicked", Toast.LENGTH_SHORT).show()
+        val adapter = MesureListAdapter(MesureListener { mesure ->
+            Toast.makeText(this.context,"Quantité de gaz : ${mesure.quantite_gaz} - Seuil : ${Connexion.getSeuil(mesure.seuil_id)?.valeur}", Toast.LENGTH_SHORT).show()
         })
 
         binding.list.adapter = adapter
@@ -76,17 +70,6 @@ class ListMesuresFragment : Fragment() {
             text = dateText
         }
 
-
-        @BindingAdapter("userImage")
-        @JvmStatic
-        fun ImageView.setUserImage(item: User) {
-            setImageResource(
-                when (item.gender) {
-                    "Homme" -> R.mipmap.ic_man
-                    else -> R.mipmap.ic_woman
-                }
-            )
-        }
     }
 
 

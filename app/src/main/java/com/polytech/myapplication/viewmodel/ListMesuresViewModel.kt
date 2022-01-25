@@ -11,7 +11,6 @@ import com.polytech.myapplication.model.Mesure
 import com.polytech.myapplication.model.Seuil
 import com.polytech.myapplication.service.IotApi
 import com.polytech.myapplication.service.IotApiService
-import com.polytech.myapplication.service.MyApi
 import kotlinx.coroutines.*
 
 class ListMesuresViewModel(val database: MesureDao,
@@ -51,6 +50,7 @@ class ListMesuresViewModel(val database: MesureDao,
                 _mesures!!.value = listResult       //Bug ici
             } catch (e: Exception) {
                 println(e)
+                initializeMesures() //Si API injoignable.
             }
         }
     }

@@ -10,7 +10,6 @@ import com.polytech.myapplication.database.SeuilDao
 import com.polytech.myapplication.model.Connexion
 import com.polytech.myapplication.model.Seuil
 import com.polytech.myapplication.service.IotApi
-import com.polytech.myapplication.service.MyApi
 import kotlinx.coroutines.*
 
 class SeuilViewModel(val database: SeuilDao, application: Application) : AndroidViewModel(application) {
@@ -44,6 +43,10 @@ class SeuilViewModel(val database: SeuilDao, application: Application) : Android
         }
     }
 
+    fun afficherQuantite():String {
+        return "Quantité de gaz : ".plus(1000)
+    }
+
     private fun getSeuils() {
         uiScope.launch {
             var getPropertiesDeferred = IotApi.retrofitService.getSeuils()
@@ -53,14 +56,16 @@ class SeuilViewModel(val database: SeuilDao, application: Application) : Android
                 _seuil.value!!.valeur = listResult.toFloat()
             } catch (e: Exception) {
                 println(e)
+                initializeSeuil() //On passe en local si API injoignable.
             }
         }
     }
 
     fun setSeuil(newSeuil: Float){
         uiScope.launch {
-            var id = insert(newSeuil)
-            var monSeuil = database.get(id)
+            modifier(newSeuil)
+            var id = database.getLastSeuilByUtilisateurId(Connexion.utilisateur.id)?.id
+            var monSeuil = id?.let { database.get(it) }
             var setPropertiesDeferred = IotApi.retrofitService.setSeuil(monSeuil!!)
             try {
                 var listResult = setPropertiesDeferred.await()

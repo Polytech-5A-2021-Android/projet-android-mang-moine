@@ -6,22 +6,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.constraintlayout.motion.widget.TransitionBuilder.validate
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import com.polytech.myapplication.database.Database
 import com.polytech.myapplication.databinding.FragmentConnexionBinding
-import com.polytech.myapplication.databinding.FragmentIdentityBinding
 import com.polytech.myapplication.model.Connexion
-import com.polytech.myapplication.model.User
-import com.polytech.myapplication.model.Utilisateur
 import com.polytech.myapplication.service.IotApi
 import com.polytech.myapplication.viewmodel.ConnexionViewModel
-import com.polytech.myapplication.viewmodel.IdentityViewModel
 import com.polytech.myapplication.viewmodelfactory.ConnexionViewModelFactory
-import com.polytech.myapplication.viewmodelfactory.IdentityViewModelFactory
 
 
 class ConnexionFragment : Fragment() {

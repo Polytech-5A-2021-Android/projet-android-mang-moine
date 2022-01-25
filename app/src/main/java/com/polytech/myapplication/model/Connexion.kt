@@ -16,6 +16,12 @@ class Connexion {
             return seuils[seuilId]
         }
 
+        @JvmStatic
+        fun getStringValeurLastSeuil(): String {
+            val id = seuils.keys.last()
+            return "Seuil actuel : ".plus(seuils[id]?.valeur)
+        }
+
     }
 
 

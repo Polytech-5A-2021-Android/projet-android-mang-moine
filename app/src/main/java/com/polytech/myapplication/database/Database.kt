@@ -6,13 +6,11 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.polytech.myapplication.model.Mesure
 import com.polytech.myapplication.model.Seuil
-import com.polytech.myapplication.model.User
 import com.polytech.myapplication.model.Utilisateur
 
-@Database(entities = [User::class, Utilisateur::class, Seuil::class, Mesure::class], version = 4, exportSchema = false)
+@Database(entities = [Utilisateur::class, Seuil::class, Mesure::class], version = 5, exportSchema = false)
 abstract class Database : RoomDatabase() {
 
-    abstract val userDao: UserDao
     abstract val utilisateurDao: UtilisateurDao
     abstract val seuilDao: SeuilDao
     abstract val mesureDao: MesureDao

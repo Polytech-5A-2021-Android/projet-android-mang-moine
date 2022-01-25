@@ -19,38 +19,6 @@
     </fragment>
 
     <fragment
-        android:id="@+id/identityFragment"
-        android:name="com.polytech.myapplication.IdentityFragment"
-        android:label="IdentityFragment"
-        tools:layout="@layout/fragment_identity">
-        <action
-            android:id="@+id/action_identityFragment_to_personalDataFragment"
-            app:destination="@id/personalDataFragment" />
-        <action
-            android:id="@+id/action_identityFragment_to_listFragment"
-            app:destination="@id/listFragment" />
-        <action
-            android:id="@+id/action_identityFragment_to_apiListFragment"
-            app:destination="@id/apiListFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/personalDataFragment"
-        android:name="com.polytech.myapplication.PersonalDataFragment"
-        android:label="PersonalDataFragment"
-        tools:layout="@layout/fragment_personal_data">
-        <argument
-            android:name="user"
-            app:argType="com.polytech.myapplication.model.User" />
-    </fragment>
-    <fragment
-        android:id="@+id/listFragment"
-        android:name="com.polytech.myapplication.ListFragment"
-        android:label="ListFragment" />
-    <fragment
-        android:id="@+id/apiListFragment"
-        android:name="com.polytech.myapplication.ApiListFragment"
-        android:label="ApiListFragment" />
-    <fragment
         android:id="@+id/inscriptionFragment"
         android:name="com.polytech.myapplication.InscriptionFragment"
         android:label="InscriptionFragment"

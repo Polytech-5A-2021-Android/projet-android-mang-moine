@@ -1,7 +1,6 @@
 package com.polytech.myapplication.database
 
 import androidx.room.*
-import com.polytech.myapplication.model.User
 import com.polytech.myapplication.model.Utilisateur
 
 @Dao

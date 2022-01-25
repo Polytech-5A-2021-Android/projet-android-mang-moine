@@ -5,10 +5,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.polytech.myapplication.databinding.ItemViewBinding
 import com.polytech.myapplication.databinding.MesureItemViewBinding
 import com.polytech.myapplication.model.Mesure
-import com.polytech.myapplication.model.User
 
 class MesureListAdapter(val clickListener: MesureListener) : ListAdapter<Mesure, MesureListAdapter.ViewHolder>(MesureDiffCallback()) {
 
