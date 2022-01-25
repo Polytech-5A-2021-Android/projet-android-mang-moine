@@ -17,7 +17,7 @@
     <string name="qte_gaz">Quantité de gaz : </string>
     <string name="valeur_seuil">Valeur du seuil : </string>
     <string name="modifier_seuil">Modifier le seuil</string>
-    <string name="activer_ventilateur">Désactiver le ventilateur</string>
+    <string name="activer_ventilateur">Activer le ventilateur</string>
 
     <string name="seuil_actuel">Seuil actuel : </string>
     <string name="nouveau_seuil">Saisir le nouveau seuil : </string>

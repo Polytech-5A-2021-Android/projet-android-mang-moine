@@ -8,10 +8,6 @@ import androidx.lifecycle.MutableLiveData
 import com.polytech.myapplication.database.MesureDao
 import com.polytech.myapplication.model.Connexion
 import com.polytech.myapplication.model.Mesure
-import com.polytech.myapplication.model.Seuil
-import com.polytech.myapplication.service.IotApi
-import com.polytech.myapplication.service.IotApiService
-import com.polytech.myapplication.service.MyApi
 import kotlinx.coroutines.*
 
 class ListMesuresViewModel(val database: MesureDao,
@@ -22,36 +18,17 @@ class ListMesuresViewModel(val database: MesureDao,
     private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
 
     private val _mesures = MutableLiveData<List<Mesure>>()
-
     val mesures: LiveData<List<Mesure>>
         get() = _mesures
 
     init {
         Log.i("ListViewModel", "created")
-//        initializeMesures()       //Sans API
-        getListTaux();
-
+        initializeMesures()
     }
 
     private fun initializeMesures() {
         uiScope.launch {
             _mesures.value = getMesuresByUtilisateur()
-        }
-    }
-
-    private fun getListTaux(){
-        uiScope.launch {
-//            _mesures.value = getMesuresByUtilisateur()
-            var getPropertiesDeferred = IotApi.retrofitService.getMesures();
-            println("avant try")
-            try {
-                println("Dans try")
-                var listResult = getPropertiesDeferred.await()
-                println(listResult)
-                _mesures!!.value = listResult       //Bug ici
-            } catch (e: Exception) {
-                println(e)
-            }
         }
     }
 

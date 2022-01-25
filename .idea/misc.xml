@@ -3,13 +3,11 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/A_Polytech/Semestre 9/IoT/Projet - Front_Application/projet-android-mang-moine/app/src/main/res/layout/activity_main.xml" value="0.19293478260869565" />
-        <entry key="..\:/A_Polytech/Semestre 9/IoT/Projet - Front_Application/projet-android-mang-moine/app/src/main/res/layout/fragment_modifier_seuil.xml" value="0.17395833333333333" />
-        <entry key="..\:/A_Polytech/Semestre 9/IoT/Projet - Front_Application/projet-android-mang-moine/app/src/main/res/layout/fragment_principal.xml" value="0.23958333333333334" />
         <entry key="..\:/Documents/ProjetsAndroid/AppIot/app/src/main/res/layout/activity_main.xml" value="0.23369565217391305" />
         <entry key="..\:/Documents/ProjetsAndroid/AppIot/app/src/main/res/layout/api_item_view.xml" value="0.2296195652173913" />
         <entry key="..\:/Documents/ProjetsAndroid/AppIot/app/src/main/res/layout/fragment_api_list.xml" value="0.2296195652173913" />
         <entry key="..\:/Documents/ProjetsAndroid/AppIot/app/src/main/res/layout/fragment_connexion.xml" value="0.25416666666666665" />
+        <entry key="..\:/Documents/ProjetsAndroid/AppIot/app/src/main/res/layout/fragment_graph.xml" value="0.25416666666666665" />
         <entry key="..\:/Documents/ProjetsAndroid/AppIot/app/src/main/res/layout/fragment_identity.xml" value="0.4" />
         <entry key="..\:/Documents/ProjetsAndroid/AppIot/app/src/main/res/layout/fragment_inscription.xml" value="0.25416666666666665" />
         <entry key="..\:/Documents/ProjetsAndroid/AppIot/app/src/main/res/layout/fragment_list.xml" value="0.23777173913043478" />

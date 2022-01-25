@@ -46,12 +46,14 @@ class ModifierSeuilFragment : Fragment() {
             val nouvSeuil = Converter.stringToFloat(binding.editTextSeuil.text.toString())
             retourPrincipal(it,nouvSeuil)
         }
+
+
         return binding.root
     }
 
+
     private fun retourPrincipal(view: View, valeur: Float) {
-//        viewModel.modifier(valeur)    Sans API
-        viewModel.setSeuil(valeur)
+        viewModel.modifier(valeur)
         this.findNavController().navigate(ModifierSeuilFragmentDirections.actionModifierSeuilFragmentToPrincipalFragment())
     }
 

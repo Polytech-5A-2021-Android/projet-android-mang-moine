@@ -6,13 +6,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import com.polytech.myapplication.database.Database
 import com.polytech.myapplication.databinding.FragmentPrincipalBinding
-import com.polytech.myapplication.utils.Converter
 import com.polytech.myapplication.viewmodel.ConnexionViewModel
 import com.polytech.myapplication.viewmodel.SeuilViewModel
 import com.polytech.myapplication.viewmodelfactory.ConnexionViewModelFactory
@@ -57,13 +55,7 @@ class PrincipalFragment : Fragment() {
         binding.btnAfficherMesures.setOnClickListener {
             afficherMesures(it)
         }
-        binding.btnActiverVentilateur.setOnClickListener{
-            val action = false;
-            desactiverVenti(it,action)
-        }
-        viewModel.seuil.observe(viewLifecycleOwner, Observer { seuil ->
-            binding.txtSeuil.text=seuil.valeur.toString()
-        })
+
         return binding.root
     }
 
@@ -79,8 +71,5 @@ class PrincipalFragment : Fragment() {
         this.findNavController().navigate(PrincipalFragmentDirections.actionPrincipalFragmentToListMesuresFragment())
     }
 
-    private fun desactiverVenti(view: View, bol: Boolean) {
-        viewModel.desactivateVenti(bol)
-    }
 
 }

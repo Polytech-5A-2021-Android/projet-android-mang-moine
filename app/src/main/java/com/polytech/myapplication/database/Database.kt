@@ -30,7 +30,6 @@ abstract class Database : RoomDatabase() {
                         "database"
                     )
                         .fallbackToDestructiveMigration()
-                        .allowMainThreadQueries()
                         .build()
                     INSTANCE = instance
                 }

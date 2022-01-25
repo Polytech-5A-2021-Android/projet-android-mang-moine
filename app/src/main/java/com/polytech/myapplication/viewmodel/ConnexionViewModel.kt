@@ -103,6 +103,7 @@ class ConnexionViewModel(val database: UtilisateurDao, application: Application)
 
 
 
+
     override fun onCleared() {
         super.onCleared()
         Log.i("ConnexionViewModel", "destroyed")
