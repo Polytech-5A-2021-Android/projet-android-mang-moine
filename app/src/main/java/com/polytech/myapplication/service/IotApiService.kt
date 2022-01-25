@@ -9,7 +9,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.*
 
-private const val BASE_URL = "http://localhost:8080"
+private const val BASE_URL = "http://192.168.2.92:8080"
 
 private val moshi = Moshi.Builder()
     .add(KotlinJsonAdapterFactory())
@@ -23,19 +23,22 @@ private val retrofit = Retrofit.Builder()
 
 interface IotApiService {
 
-    @GET("mesure")
+    @GET("/tauxGaz/getListeTauxGaz")
     fun getMesures(): Deferred<List<Mesure>>
 
-    @GET("seuil")
-    fun getSeuils(): Deferred<List<Seuil>>
+    @GET("/seuil/getSeuil")
+    fun getSeuils(): Deferred<Int>
 
-    @GET("activate")
-    fun activerVentilateur()
+    @POST("/seuil/modificationSeuil")
+    fun setSeuil(@Body seuil: Seuil): Deferred<Seuil>
+
+    @POST("/ventilateur/activateVenti")
+    fun desactiverVentilateur(@Body action : Boolean): Deferred<Boolean>
 
     @GET("utilisateur")
     fun getUtilisateurs(): Deferred<List<Utilisateur>>
 
-
+//    @POST()
 }
 
 object IotApi {
@@ -44,5 +47,4 @@ object IotApi {
     override fun toString():String {
         return ""
     }
-
 }

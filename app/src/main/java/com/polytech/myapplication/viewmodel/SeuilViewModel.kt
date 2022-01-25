@@ -9,6 +9,8 @@ import androidx.lifecycle.MutableLiveData
 import com.polytech.myapplication.database.SeuilDao
 import com.polytech.myapplication.model.Connexion
 import com.polytech.myapplication.model.Seuil
+import com.polytech.myapplication.service.IotApi
+import com.polytech.myapplication.service.MyApi
 import kotlinx.coroutines.*
 
 class SeuilViewModel(val database: SeuilDao, application: Application) : AndroidViewModel(application) {
@@ -22,7 +24,8 @@ class SeuilViewModel(val database: SeuilDao, application: Application) : Android
 
     init {
         Log.i("SeuilViewModel", "created")
-        initializeSeuil()
+//        initializeSeuil()         //Sans api
+        getSeuils()                 //Avec api
     }
 
 
@@ -38,6 +41,43 @@ class SeuilViewModel(val database: SeuilDao, application: Application) : Android
                 _seuil.value = get(id)
             }
             getMapSeuils(id)
+        }
+    }
+
+    private fun getSeuils() {
+        uiScope.launch {
+            var getPropertiesDeferred = IotApi.retrofitService.getSeuils()
+            try {
+                var listResult = getPropertiesDeferred.await()
+                _seuil.value = Seuil()
+                _seuil.value!!.valeur = listResult.toFloat()
+            } catch (e: Exception) {
+                println(e)
+            }
+        }
+    }
+
+    fun setSeuil(newSeuil: Float){
+        uiScope.launch {
+            var id = insert(newSeuil)
+            var monSeuil = database.get(id)
+            var setPropertiesDeferred = IotApi.retrofitService.setSeuil(monSeuil!!)
+            try {
+                var listResult = setPropertiesDeferred.await()
+            } catch (e: Exception) {
+                println(e)
+            }
+        }
+    }
+
+    fun desactivateVenti(action: Boolean){
+        uiScope.launch {
+            var setPropertiesDeferred = IotApi.retrofitService.desactiverVentilateur(action!!)
+            try {
+                setPropertiesDeferred.await()
+            } catch (e: Exception) {
+                println(e)
+            }
         }
     }
 
@@ -79,6 +119,7 @@ class SeuilViewModel(val database: SeuilDao, application: Application) : Android
     }
 
     override fun onCleared() {
+        _seuil.value=null
         super.onCleared()
         Log.i("SeuilViewModel", "destroyed")
     }
